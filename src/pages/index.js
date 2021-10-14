@@ -1,30 +1,67 @@
 import * as React from "react";
 import styled from "styled-components";
 import { StaticImage } from "gatsby-plugin-image";
+import { Helmet } from "react-helmet";
+import { Link } from "gatsby";
+import Video from "../images/vid.mp4";
+import "./styles.css";
+
+const oxfordBlue = "#14213dff";
+const orangeWeb = "#fca311ff";
 
 // styles
 const Page = styled.div`
     height: 100vh;
     width: 100vw;
     box-sizing: border-box;
+    color: white;
+`;
 
-    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-        "Lucida Sans", Arial, sans-serif;
-
-    @media (min-width: 768px) {
-    }
+const VidBg = styled.video`
+    height: 90vh;
+    width: 100vw;
+    z-index: 0;
+    position: fixed;
+    filter: blur(5px);
+    object-fit: cover;
 `;
 
 const Main = styled.main`
-    background-image: url("https://github.com/CarsonDSaunders/carson-saunders-dev/blob/main/src/images/carson-saunders-dev-bg.jpg");
+    background: #14213dff;
     width: 100vw;
-    height: 80vh;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
+
+const TopSection = styled.section`
+    backdrop-filter: blur(5px);
+    border-radius: 10%;
+    height: 40%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 `;
 
 const Header = styled.header`
     width: 50vw;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `;
+
+const HeaderText = styled.h1`
+    font-size: 4rem;
+    font-weight: 700;
+    text-align: center;
+`;
+
+const Logo = styled(StaticImage)``;
 
 const NavBar = styled.nav`
     display: flex;
@@ -34,36 +71,65 @@ const NavOptions = styled.ul`
     list-style: none;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
+    width: 30vw;
 `;
 
-const NavItem = styled.li`
+const NavItem = styled(Link)`
     font-size: 1.5rem;
+    color: #14213dff;
+    font-weight: 600;
+    text-decoration: none;
+    transition: color linear 0.5s;
+
+    &:hover {
+        color: #fca311ff;
+    }
+`;
+
+const ActiveNavItem = styled(NavItem)`
+    color: #fca311ff;
 `;
 
 const Footer = styled.footer`
-    background-color: darkgray;
-    height: 20vh;
+    background-color: #71816d;
+    height: 10vh;
 `;
 
-const Logo = styled(StaticImage)``;
 // markup
 const IndexPage = () => {
     return (
         <Page>
+            <Helmet>
+                <style>
+                    @import
+                    url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+                </style>
+            </Helmet>
             <Main>
-                <Header>
-                    <h1>Carson Saunders Dev</h1>
-                </Header>
-                <NavBar>
-                    <NavOptions>
-                        <NavItem>Home</NavItem>
-                        <NavItem></NavItem>
-                        <NavItem></NavItem>
-                        <NavItem></NavItem>
-                    </NavOptions>
-                </NavBar>
+                <VidBg muted autoPlay loop src={Video} type="video/mp4" />
+
+                <TopSection>
+                    <Header>
+                        <HeaderText>Carson Saunders Dev</HeaderText>
+                    </Header>
+                    <NavBar>
+                        <NavOptions>
+                            <li>
+                                <ActiveNavItem to="/">Home</ActiveNavItem>
+                            </li>
+                            <li>
+                                <NavItem to="/about">About Me</NavItem>
+                            </li>
+                            <li>
+                                <NavItem to="https://bigg.carsonsaunders.dev/">
+                                    Projects
+                                </NavItem>
+                            </li>
+                        </NavOptions>
+                    </NavBar>
+                </TopSection>
             </Main>
             <Footer></Footer>
         </Page>
