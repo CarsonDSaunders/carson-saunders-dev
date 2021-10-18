@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkcarson_saunders_dev=self.webpackChunkcarson_saunders_dev||[]).push([[897],{3533:function(e,n,u){u.r(n),u.d(n,{default:function(){return s}});var r=u(7294);function s(){return r.createElement("div",null,"Test")}}}]);
+//# sourceMappingURL=component---src-pages-bigg-js-1c4ca573658c72f90f4f.js.map
